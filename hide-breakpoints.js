@@ -92,8 +92,28 @@
         }
     }
 
-setTimeout(initialize, 1000); // Delay to ensure page is loaded
+    function waitForBreakpoints() {
+        const checkInterval = setInterval(() => {
+            const hasBreakpoints = breakpointSelectors.some(selector => 
+                document.querySelectorAll(selector).length > 0
+            );
+            
+            if (hasBreakpoints) {
+                clearInterval(checkInterval);
+                console.log('✅ Breakpoint buttons found! Initializing...');
+                initialize();
+            }
+        }, 1000); // Check every 1000ms
+        
+        // Safety timeout after 30 seconds
+        setTimeout(() => {
+            clearInterval(checkInterval);
+            console.log('⚠️ Timeout waiting for breakpoints, initializing anyway...');
+            initialize();
+        }, 30000);
+    }
 
+    waitForBreakpoints();
 
     function initialize() {
         console.log('🔍 Initializing breakpoint hider...');

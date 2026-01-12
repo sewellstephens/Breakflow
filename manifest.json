@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Breakflow - Webflow extension",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A Chrome extension to enhance Webflow's Designer experience",
     "icons": {
       "16": "content/icon.png",
